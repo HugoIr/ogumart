@@ -52,13 +52,10 @@ const App = () => {
         setCart(newCart);
     }
 
-    const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    const handleCaptureCheckout = async ( newOrder) => {
         try {
-            // const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder)
 
             setOrder(newOrder);
-            console.log('neworder', order)
-            console.log('cart', cart)
             refreshCart();
 
         } catch (error) {
@@ -71,7 +68,6 @@ const App = () => {
         fetchCart();
     }, []);
 
-    // console.log(products);
 
     return (
         <Router>

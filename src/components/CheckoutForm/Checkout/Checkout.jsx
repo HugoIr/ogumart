@@ -4,7 +4,7 @@ import { commerce } from '../../../lib/commerce';
 import AddressForm from '../AddressForm';
 import PaymentForm from '../PaymentForm';
 import useStyles from './styles.js';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Divider, Button, CircularProgress } from '@material-ui/core';
 
 const steps = ['Shipping address', 'Payment details'];
@@ -15,7 +15,6 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     const [ shippingData, setShippingData ]  = useState({});
     const [ isFinisihed, setIsFinisihed ] = useState(false);
     const classes = useStyles();
-    const history = useHistory();
 
     useEffect(() => {
         const generateToken = async () => {
@@ -24,7 +23,8 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
                 
                 setCheckoutToken(token);
             } catch (error) {
-                history.pushState('/');
+                // history.push('/');
+                // console.log('error token')
             }
         }
 
@@ -42,8 +42,8 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
 
     const timeout = () => {
         setTimeout( () => {
-            console.log('Timeout!');
-        }, 3000)
+            setIsFinisihed(true);
+        }, 6000)
     }
 
     const Form = () => activeStep === 0 
